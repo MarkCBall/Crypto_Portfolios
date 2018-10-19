@@ -1,8 +1,29 @@
-# Express App - To Demonstrate
+# Express App - to track crypto portfolios
 
-- MVC Structure
-- Connection To Mongodb Using Mongoose
-- Using a CSS Framework
+- Building w server with a single portfolio route to start
+
+  -Database backend on moggoDB
+  
+  -Model will be
+  
+    owner
+  
+    portfolio
+  
+    tokenName
+  
+    tokenTicker
+  
+    tokenAmount
+  
+  -Model will be (a static database for now)
+  
+    tokenName
+  
+    tokenTicker
+  
+    tokenPriceUSD
+
 
 ## To Run
 
@@ -22,12 +43,15 @@ npm run windows
 
 ## To Do
 
-- Create Mongoose Schema and Records in Models Folder for Posts
-- Replace temporary posts variable in Controller with mongoose models
-- Add remaining routes to reflect requirements of mockup
-- Add an admin routes for creating, updating deleting posts
-- Add a CSS framework to pretty up the layout
+Step 1) Build the website route for porfolios connected to a static database backend
 
-### Note: EJS doesnt natively handle layouts to accomodate this we are using express-ejs-layouts
-### For setting up vs-code debugger see [here](https://github.com/Microsoft/vscode-recipes/tree/master/nodemon)
+  1a) Fix posts/:slug title partials problem
+  
+  1b) Rename posts to portfolio and other applicable renaming of structure
+  
+  1c) Instantiate database model for crypto portfolio
+  
+  1d) Instantiate database model for crypto ticker+names and populate with development testing data
 
+
+Step 2) Regrounp as a team and plan how to tackle remaining challenges
