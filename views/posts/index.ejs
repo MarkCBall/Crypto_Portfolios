@@ -1,7 +1,23 @@
 
 <!-- Contains partial for the posts index page -->
 
-<h1>Articles</h1>
-<% posts.forEach(function(post) { %>
-  <% include ./post_summary %>
+THIS PAGE SHOULD LIST ALL THE PORTFOLIOS FOR THE SPECIFIED USER and the 
+<br>Clicking on a portfolio should link to localhost/user/portfolioName which displays each coin and amount ect
+<br><br><br>
+
+<h1>Portfolio</h1>
+
+
+
+ <% coins.forEach(function(coin) { %>
+
+  <!-- note you need to use - after lessthanpercent for the thing below--- why? -->
+  <!-- to format with CSS -->
+  <!-- to include delete button -->
+  <!-- to include # owned and value of coin owned -->
+  <div><%- coin['tokenTicker'] %>   &nbsp&nbsp&nbsp        <%- coin['tokenName'] %>  &nbsp&nbsp&nbsp&nbsp   ## owned  &nbsp&nbsp&nbsp    DELETE COIN</div><br>
+
  <% }) %>
+
+<br><br>
+

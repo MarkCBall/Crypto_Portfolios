@@ -1,10 +1,10 @@
 var createError = require('http-errors');
-var express = require('express');
-var expressLayouts = require('express-ejs-layouts');
+var express = require('express');//express is package for web applications
+var expressLayouts = require('express-ejs-layouts'); //why?
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var path = require('path');//npm package to manipulate path strings
+var cookieParser = require('cookie-parser');//npm package to store cookies - do we use this?
+var logger = require('morgan');//what is this?
 
 var indexRouter = require('./routes/index');
 var postsRouter = require('./routes/posts');
@@ -12,20 +12,20 @@ var postsRouter = require('./routes/posts');
 var app = express();
 
 // Set layout
-app.set('layout', 'layout')
+app.set('layout', 'layout')//what is this?
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');//specifies that we will use EJS
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));//is this where browser looks?
 app.use(expressLayouts);
 app.use('/', indexRouter);
-app.use('/blog', postsRouter);
+app.use('/user', postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
