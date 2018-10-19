@@ -34,10 +34,25 @@ var coins =[
   {tokenTicker: "xmr", tokenName:"Monero"}
 ];
 
+//change to a database and protect against two portfolios named the same but with different owners
+// var coinsOwned =[
+//   {owner:"Mark",pName:"Dream Purchases",tokenTicker:"btc",tokenAmount:"100"},
+//   {owner:"Mark",pName:"Dream Purchases",tokenTicker:"eth",tokenAmount:"2000"},
+//   {owner:"Mark",pName:"Dream Purchases",tokenTicker:"xrp",tokenAmount:"30000"},
+
+//   {owner:"Mark",pName:"Actual Coins Owned",tokenTicker:"ada",tokenAmount:"3"},
+//   {owner:"Mark",pName:"Actual Coins Owned",tokenTicker:"usdt",tokenAmount:"7"},
+
+//   {owner:"Dylan",pName:"Main portfolio",tokenTicker:"bch",tokenAmount:"3"},
+//   {owner:"Dylan",pName:"Main portfolio",tokenTicker:"xmr",tokenAmount:"7"}
+
+// ];
+
+
 
   // Displays a list of all blog posts
   exports.index = function(req, res, next) {
-    res.render('posts/index', { title: "Blog", coins: coins });
+    res.render('posts/index', { coins: coins });
   };
 
   // exports.show = function(req, res, next) {

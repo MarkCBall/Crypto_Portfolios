@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));//is this where browser looks?
 app.use(expressLayouts);
 app.use('/', indexRouter);
-app.use('/blog', postsRouter);
+app.use('/user', postsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
