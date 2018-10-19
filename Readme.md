@@ -6,23 +6,23 @@
   
   -Model will be
   
-  owner
+    owner
   
-  portfolio
+    portfolio
   
-  tokenName
+    tokenName
   
-  tokenTicker
+    tokenTicker
   
-  tokenAmount
+    tokenAmount
   
   -Model will be (a static database for now)
   
-  tokenName
+    tokenName
   
-  tokenTicker
+    tokenTicker
   
-  tokenPriceUSD
+    tokenPriceUSD
 
 
 ## To Run
@@ -43,5 +43,9 @@ npm run windows
 
 ## To Do
 Step 1) Build the website route for porfolios connected to a static database backend
+  1a) Fix posts/:slug title partials problem
+  1b) Rename posts to portfolio and other applicable renaming of structure
+  1c) Instantiate database model for crypto portfolio
+  1d) Instantiate database model for crypto ticker+names and populate with development testing data
 
 Step 2) Regrounp as a team and plan how to tackle remaining challenges
