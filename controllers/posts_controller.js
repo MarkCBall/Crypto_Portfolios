@@ -2,16 +2,16 @@
 // ToDo: Replace posts & post with a Mongoose Model
 
 var posts = [
-  { title: "My First Blog Post",
+  { title: "My First Blog Post title",
     tags: ["blockchain", "web development"],
     created_at: "2018-10-16T23:45:24.565Z",
     slug: "my-first-blog-post",
     content: "content my first blog post",
     summary: "summary my first blog post",
-    image_url: "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/01/Blockchain-Funds.png"
+    image_url: "../assets/Dev_Img1.jpg"
   },
   {
-  	title: "My Second Blog Post",
+  	title: "My Second Blog Post title",
   	tags: ["smart contracts"],
   	created_at: "2018-10-16T23:45:24.565Z",
   	slug: "my-second-blog-post",
@@ -29,7 +29,7 @@ var posts = [
   exports.show = function(req, res, next) {
     let post = posts.filter(x => x['slug'] === req.params['slug'])[0]
     console.log(post['title'])
-    res.render('posts/show', { title: post['title'], post: post });
+    res.render('posts/show', {  post: post }); //title: post['title'], content: post['content'],
   };
 
 
