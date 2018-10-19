@@ -7,6 +7,6 @@ router.get('/', postsController.index)
 
 // Get an Individual post listing
 
-router.get('/:slug', postsController.show)
+// router.get('/:slug', postsController.show)
 
 module.exports = router;
