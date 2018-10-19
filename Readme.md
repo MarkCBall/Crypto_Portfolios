@@ -1,17 +1,29 @@
 # Express App - to track crypto portfolios
 
 - Building w server with a single portfolio route to start
+
   -Database backend on moggoDB
-    -Model will be
-      owner
-      portfolio
-      tokenName
-      tokenTicker
-      tokenAmount
-    -Model will be (a static database for now)
-      tokenName
-      tokenTicker
-      tokenPriceUSD
+  
+  -Model will be
+  
+  owner
+  
+  portfolio
+  
+  tokenName
+  
+  tokenTicker
+  
+  tokenAmount
+  
+  -Model will be (a static database for now)
+  
+  tokenName
+  
+  tokenTicker
+  
+  tokenPriceUSD
+
 
 ## To Run
 
