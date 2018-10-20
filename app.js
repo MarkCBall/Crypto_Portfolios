@@ -8,15 +8,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 
-//move this to a separate file later and don't hardcore the address
-//var database = require('.database/database');
-let mongoose = require('mongoose');
-const database = () => {
-	mongoose.connect('mongodb://moball:123456a@ds047335.mlab.com:47335/gbc-blogapp-db')
-		.then(() => { console.log(`Connected to mongodb`)})
-		.catch(err => { console.log(err)});
-};//end database stuff
 
+var database = require('./database/database');
 database();
 
 var app = express();
