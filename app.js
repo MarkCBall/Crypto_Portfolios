@@ -9,16 +9,10 @@ var cookieParser = require('cookie-parser');//npm package to store cookies - do 
 var logger = require('morgan');//what is this?
 
 var indexRouter = require('./routes/index');
-<<<<<<< HEAD
 
 
 var database = require('./database/database');
 database();
-=======
-var postsRouter = require('./routes/posts');
-var apiRouter = require('./routes/api');
-
->>>>>>> f17db504950322cb74b75fe2350b1dcaa5fe0015
 
 var app = express();
 
@@ -49,11 +43,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));//is this where browser looks?
 app.use(expressLayouts);
 app.use('/', indexRouter);
-<<<<<<< HEAD
-=======
-app.use('/user', postsRouter);
-app.use('/api', apiRouter)
->>>>>>> f17db504950322cb74b75fe2350b1dcaa5fe0015
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
