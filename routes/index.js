@@ -21,17 +21,22 @@ dbConnect();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
- 
     Post.distinct('userName', function(error, users) {
         res.render('index', {usersArray:users});
     });
-
-  
 });
 
 router.get('/:slug',function(req, res, next) {
+    Post.distinct('portfolioName',{userName:req.params.slug}, function(error, portfolios) {
+    //res.render('index', {usersArray:users});
+    // console.log(portfolios[0]);
+    // console.log(portfolios[1]);    
+    // console.log(portfolios[2]);
+    res.render('postDisp', {path1: req.params.slug, portfolios:portfolios} ); 
+    });
+
     //filter out only slug's portfolios and display as well
-    res.render('postDisp', {path1: req.params.slug} ); 
+
 });
 
 router.get('/:slug/:slug2',function(req, res, next) {

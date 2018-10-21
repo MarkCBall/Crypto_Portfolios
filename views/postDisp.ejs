@@ -3,6 +3,12 @@
   <body>
         <a href=".."><h3>Back to previous page</h3></a>
     <h1>List of portfolios for user <%= path1 %> below</h1>
+
+    <% portfolios.forEach(function(portName) { %>
+      <a href="/<%- path1 %>/<%- portName %>"<h2><%- portName %><br><br></h2></a>
+     <% }) %>
+
+
   </body>
 </html>
 
