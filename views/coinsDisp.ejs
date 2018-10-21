@@ -3,5 +3,10 @@
   <body>
         <a href="/<%= path1 %>"><h3>Back to previous page</h3></a>
     <h1>List of coins for user <%= path1 %> in portfolio <%= path2 %></h1>
+
+    <% coins.forEach(function(coin) { %>
+      <p><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </p>
+     <% }) %>
+
   </body>
 </html>

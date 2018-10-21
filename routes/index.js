@@ -40,8 +40,17 @@ router.get('/:slug',function(req, res, next) {
 });
 
 router.get('/:slug/:slug2',function(req, res, next) {
+    Post.find({userName:req.params.slug, portfolioName:req.params.slug2}, function(error, coins){
+     console.log(coins[0].tokenTicker);
+     //console.log(coins[1].tokenTicker);
+     //console.log(coins[2].tokenTicker);
+    // console.log(portfolios[1]);    
+    // console.log(portfolios[2]);
+    res.render('coinsDisp', {path1: req.params.slug, path2:req.params.slug2, coins:coins} );
+    });
+
     //filter out only slug's portfolios and display as well
-    res.render('coinsDisp', {path1: req.params.slug, path2:req.params.slug2} );
+    //res.render('coinsDisp', {path1: req.params.slug, path2:req.params.slug2} );
 });
 
 module.exports = router;
