@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html>
   <body>
+      <!-- document.getElementsById("username").value, -->
+
+
+    <!-- <script src="../routes/index.js"></script> -->
+
+
     <h1>List of users below</h1>
-    
-    <% usersArray.forEach(function(userName) { %>
-      <a href="/<%- userName %>"<h2><%- userName %><br><br></h2></a>
-     <% }) %>
+
+     <div class="userRow">
+      <% usersArray.forEach(function(userName) { %>
+
+        <div><a href="/<%- userName %>"<h2><%- userName %></h2></a>
+        <form method="post" action="/deleteUser">
+        
+          <input type="hidden" name="userName" value="<%= userName %>">
+          <input type="submit" value="Delete User">
+        </div>
+          </form>
+
+
+      <% }) %>
+    </div>
+    <!-- <br><br><br><textarea id="username">Type new username here</textarea> <button onclick="addd()">Add user</button> -->
+
+
+    <br><br><br>
+    <form method="post" action="/addUser">
+      <input type="text" name="userToAdd" value="New_User_Name">
+      <!-- make it so quotes, spaces ect can't be input -->
+      <input type="submit" value="Add User">
+    </form>
+
 
   </body>
 </html>

@@ -19,6 +19,68 @@ let Post = mongoose.model('Post', testSchema);
 dbConnect();
 //////////
 
+/////////////////////////////////////////////////////////////
+router.post('/addUser', function(req, res) {
+    new Post({userName: req.body.userToAdd,portfolioName: "Default",tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
+    //res.send(200);//tells the browser that the data was send successfully
+    res.redirect("/"+req.body.userToAdd)
+    res.refresh();
+  });
+
+/////////////////////////////////////////////////////////////
+  router.post('/addPortfolio', function(req, res) {
+    new Post({userName: req.body.userName,portfolioName: req.body.portfolioToAdd,tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
+    //res.send(200);//tells the browser that the data was send successfully
+    res.redirect("/"+req.body.userName+"/"+req.body.portfolioToAdd)
+    res.refresh()
+  });
+/////////////////////////////////////////////////////////////
+  router.post('/addCoin', function(req, res) {
+
+    new Post({
+        userName: req.body.userName,
+        portfolioName: req.body.portfolioName,
+        tokenTicker: req.body.tokenTickerToAdd,
+        tokenName: "deleteme",
+        tokenAmount: req.body.tokenAmountToAdd
+    }).save();
+
+        res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
+        res.refresh();
+  });
+
+
+/////////////////////////////////////////////////////////////
+  router.post('/deleteCoin', function(req, res){
+
+    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName,tokenTicker:req.body.coinTicker},function(error,deleteMe){
+        console.log(deleteMe);
+        //deleteMe.remove().exec();       
+    });
+    res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
+  });
+/////////////////////////////////////////////////////////////
+router.post('/deletePortfolio', function(req, res){
+
+    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName},function(error,deleteMe){
+        console.log(deleteMe);
+        //deleteMe.remove().exec();       
+    });
+    res.redirect("/"+req.body.userName)
+  });
+ 
+
+  /////////////////////////////////////////////////////////////
+router.post('/deleteUser', function(req, res){
+
+    Post.findOneAndDelete({userName:req.body.userName},function(error,deleteMe){
+        console.log(deleteMe);
+        //deleteMe.remove().exec();       
+    });
+    res.redirect("/")
+  });
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     Post.distinct('userName', function(error, users) {
@@ -41,7 +103,7 @@ router.get('/:slug',function(req, res, next) {
 
 router.get('/:slug/:slug2',function(req, res, next) {
     Post.find({userName:req.params.slug, portfolioName:req.params.slug2}, function(error, coins){
-     console.log(coins[0].tokenTicker);
+     //console.log(coins[0].tokenTicker);
      //console.log(coins[1].tokenTicker);
      //console.log(coins[2].tokenTicker);
     // console.log(portfolios[1]);    
