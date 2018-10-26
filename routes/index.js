@@ -24,6 +24,7 @@ router.post('/addUser', function(req, res) {
     new Post({userName: req.body.userToAdd,portfolioName: "Default",tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
     //res.send(200);//tells the browser that the data was send successfully
     res.redirect("/"+req.body.userToAdd)
+    res.refresh();
   });
 
 /////////////////////////////////////////////////////////////
@@ -31,6 +32,7 @@ router.post('/addUser', function(req, res) {
     new Post({userName: req.body.userName,portfolioName: req.body.portfolioToAdd,tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
     //res.send(200);//tells the browser that the data was send successfully
     res.redirect("/"+req.body.userName+"/"+req.body.portfolioToAdd)
+    res.refresh()
   });
 /////////////////////////////////////////////////////////////
   router.post('/addCoin', function(req, res) {
@@ -44,6 +46,7 @@ router.post('/addUser', function(req, res) {
     }).save();
 
         res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
+        res.refresh();
   });
 
 
@@ -55,14 +58,27 @@ router.post('/addUser', function(req, res) {
         //deleteMe.remove().exec();       
     });
     res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
-    
-    
-    
-        
-
   });
+/////////////////////////////////////////////////////////////
+router.post('/deletePortfolio', function(req, res){
 
+    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName},function(error,deleteMe){
+        console.log(deleteMe);
+        //deleteMe.remove().exec();       
+    });
+    res.redirect("/"+req.body.userName)
+  });
  
+
+  /////////////////////////////////////////////////////////////
+router.post('/deleteUser', function(req, res){
+
+    Post.findOneAndDelete({userName:req.body.userName},function(error,deleteMe){
+        console.log(deleteMe);
+        //deleteMe.remove().exec();       
+    });
+    res.redirect("/")
+  });
 
 
 /* GET home page. */

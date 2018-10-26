@@ -12,7 +12,15 @@
      <div class="userRow">
       <% usersArray.forEach(function(userName) { %>
 
-        <div><a href="/<%- userName %>"<h2><%- userName %><br><br></h2></a></div>
+        <div><a href="/<%- userName %>"<h2><%- userName %></h2></a>
+        <form method="post" action="/deleteUser">
+        
+          <input type="hidden" name="userName" value="<%= userName %>">
+          <input type="submit" value="Delete User">
+        </div>
+          </form>
+
+
       <% }) %>
     </div>
     <!-- <br><br><br><textarea id="username">Type new username here</textarea> <button onclick="addd()">Add user</button> -->
@@ -20,28 +28,11 @@
 
     <br><br><br>
     <form method="post" action="/addUser">
-      <input type="text" name="userToAdd" value="New User Name">
+      <input type="text" name="userToAdd" value="New_User_Name">
       <!-- make it so quotes, spaces ect can't be input -->
       <input type="submit" value="Add User">
     </form>
 
-
-    <!-- And if you submit that form, in req.body for the route /, you will get the result:
-
-{ field1: 'form contents', field2: 'second field contents' }
-To run a function, just put it inside the POST handler like this:
-
-var foo = function() {
-  // do something
-};
-
-app.post('/', function(req, res) {
-  console.log(req.body);
-  res.send(200);
-
-  // sending a response does not pause the function
-  foo();
-}); -->
 
   </body>
 </html>
