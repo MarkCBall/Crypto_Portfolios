@@ -4,6 +4,7 @@
         <a href="/<%= path1 %>"><h3>Back to previous page</h3></a>
     <h1>List of coins for user <%= path1 %> in portfolio <%= path2 %></h1>
 
+    <!-- LIST OF ALL COINS WITH DELETE BUTTON -->
     <% coins.forEach(function(coin) { %>
       <div class="Row"><a><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </a>
       <form method="post" action="/deleteCoin">
@@ -12,6 +13,8 @@
       <input type="hidden" name="portfolioName" value="<%= path2 %>">
       <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
 
+        <!-- ADD CURRENT PRICE PER COIN AND VALUE OF COIN -->
+
       <div class="Lbtn"><input type="submit" value="Delete Coin"></div>
       </form>
       </div>
@@ -19,6 +22,7 @@
 
 
      <br><br><br>
+     <!-- ADD COIN FORM AND BUTTON -->
      <form method="post" action="/addCoin">
        <input type="text" name="tokenTickerToAdd" value="ticker">
        <input type="number" name="tokenAmountToAdd" value=0>

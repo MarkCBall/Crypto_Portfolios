@@ -4,7 +4,7 @@
 
     <h1>List of users below</h1>
 
-     
+     <!-- LIST OF ALL USERS WITH DELETE BUTTON -->
       <% usersArray.forEach(function(userName) { %>
         <div class="Row">
         <a href="/<%- userName %>"<h2><%- userName %></a>
@@ -19,9 +19,12 @@
 
 
     <br><br><br>
+    <!-- ADD USER BUTTON -->
+
+    <!-- disallow duplicates -->
     <form method="post" action="/addUser">
-      <input type="text" name="userToAdd" value="New_User_Name">
-      <!-- make it so quotes, spaces ect can't be input -->
+      <input type="text" name="userToAdd" value="New_User_Name" pattern="[0-9A-Za-z_]*">
+      <!-- TODO - add tooltip allowable chars -->
       <input type="submit" value="Add User">
     </form>
 

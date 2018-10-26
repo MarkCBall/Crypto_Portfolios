@@ -3,22 +3,14 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const dbConnect = require('./../database/database');
-dbConnect();
+//dbConnect();
 
-///////////
+const Post = require("./../models/coins");
 
-//put into separate file
-let testSchema = new mongoose.Schema({
-    userName: { type: String, required: true },
-    portfolioName: { type: String, required: true },
-    tokenTicker: { type: String, required: true },
-    tokenName: { type: String, required: true },
-    tokenAmount: { type: Number, required: true }
-});
-let Post = mongoose.model('Post', testSchema);
-dbConnect();
-//////////
 
+
+
+////////////ADD TO DATABASE//////////////////////////////////
 /////////////////////////////////////////////////////////////
 router.post('/addUser', function(req, res) {
     new Post({userName: req.body.userToAdd,portfolioName: "Default",tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
@@ -49,7 +41,7 @@ router.post('/addUser', function(req, res) {
         res.refresh();
   });
 
-
+////////////DELETE FROM DATABASE//////////////////////////////
 /////////////////////////////////////////////////////////////
   router.post('/deleteCoin', function(req, res){
 
@@ -68,20 +60,18 @@ router.post('/deletePortfolio', function(req, res){
     });
     res.redirect("/"+req.body.userName)
   });
- 
 
   /////////////////////////////////////////////////////////////
 router.post('/deleteUser', function(req, res){
 
     Post.deleteMany({userName:req.body.userName},function(error,deleteMe){
-        console.log(deleteMe);
-        //deleteMe.remove().exec();       
+        console.log(deleteMe);      
     });
     res.redirect("/")
   });
 
-
-/* GET home page. */
+////////////DISPLAY FROM DATABASE/////////////////////////////
+/////////////////////////////////////////////////////////////
 router.get('/', function(req, res, next) {
     Post.distinct('userName', function(error, users) {
         res.render('index', {usersArray:users});
@@ -90,29 +80,15 @@ router.get('/', function(req, res, next) {
 
 router.get('/:slug',function(req, res, next) {
     Post.distinct('portfolioName',{userName:req.params.slug}, function(error, portfolios) {
-    //res.render('index', {usersArray:users});
-    // console.log(portfolios[0]);
-    // console.log(portfolios[1]);    
-    // console.log(portfolios[2]);
     res.render('postDisp', {path1: req.params.slug, portfolios:portfolios} ); 
     });
-
-    //filter out only slug's portfolios and display as well
 
 });
 
 router.get('/:slug/:slug2',function(req, res, next) {
     Post.find({userName:req.params.slug, portfolioName:req.params.slug2}, function(error, coins){
-     //console.log(coins[0].tokenTicker);
-     //console.log(coins[1].tokenTicker);
-     //console.log(coins[2].tokenTicker);
-    // console.log(portfolios[1]);    
-    // console.log(portfolios[2]);
     res.render('coinsDisp', {path1: req.params.slug, path2:req.params.slug2, coins:coins} );
     });
-
-    //filter out only slug's portfolios and display as well
-    //res.render('coinsDisp', {path1: req.params.slug, path2:req.params.slug2} );
 });
 
 module.exports = router;

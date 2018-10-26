@@ -12,22 +12,24 @@ var indexRouter = require('./routes/index');
 
 
 var database = require('./database/database');
-database();
+database(); //why is this needed?
 
 var app = express();
 
-// Connect to mongoose
-mongoose.connect('mongodb://localhost:27017/testdb')
-var db = mongoose.connection
 
-app.get('/api', function(req, res){
-  User.getUsers(function(err, users){
-    if(err){
-      throw err
-    }
-    res.json(users)
-  })
-})
+//DYLAN's CODE  - do you still need this?
+// // Connect to mongoose
+// mongoose.connect('mongodb://localhost:27017/testdb')
+// var db = mongoose.connection
+
+// app.get('/api', function(req, res){
+//   User.getUsers(function(err, users){
+//     if(err){
+//       throw err
+//     }
+//     res.json(users)
+//   })
+// })
 
 // Set layout
 app.set('layout', 'layout')//what is this?
