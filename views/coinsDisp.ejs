@@ -8,5 +8,18 @@
       <p><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </p>
      <% }) %>
 
+
+     <br><br><br>
+     <form method="post" action="/addCoin">
+       <input type="text" name="tokenTickerToAdd" value="ticker">
+       <input type="number" name="tokenAmountToAdd" value=0>
+      
+       <!-- put a box here to auto pull the coin name from ticker -->
+       <!-- make it so quotes, spaces ect can't be input -->
+       <input type="hidden" name="userName" value="<%= path1 %>">
+       <input type="hidden" name="portfolioName" value="<%= path2 %>">
+       <input type="submit" value="Add Coin">
+     </form>
+
   </body>
 </html>

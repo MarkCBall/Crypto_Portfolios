@@ -31,6 +31,22 @@ router.post('/addUser', function(req, res) {
     res.redirect("/"+req.body.userName+"/"+req.body.portfolioToAdd)
   });
 
+  router.post('/addCoin', function(req, res) {
+
+    new Post({
+        userName: req.body.userName,
+        portfolioName: req.body.portfolioName,
+        tokenTicker: req.body.tokenTickerToAdd,
+        tokenName: "deleteme",
+        tokenAmount: req.body.tokenAmountToAdd
+    }).save();
+
+        res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
+    // new Post({userName: req.body.userName,portfolioName: req.body.portfolioToAdd,tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
+    // //res.send(200);//tells the browser that the data was send successfully
+    // res.redirect("/"+req.body.userName+"/"+req.body.portfolioToAdd)
+  });
+
 
 
 /* GET home page. */
