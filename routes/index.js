@@ -19,20 +19,19 @@ let Post = mongoose.model('Post', testSchema);
 dbConnect();
 //////////
 
-router.post('/', function(req, res) {
-    new Post({
-        //userName: JSON.stringify(req.body),
-        userName: req.body.userToAdd,
-        portfolioName: "Default Portfolio",
-        tokenTicker: "btc",
-        tokenName: "Bitcoin",
-        tokenAmount: 0
-    }).save();
-
+router.post('/addUser', function(req, res) {
+    new Post({userName: req.body.userToAdd,portfolioName: "Default",tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
     //res.send(200);//tells the browser that the data was send successfully
     res.redirect("/"+req.body.userToAdd)
-
   });
+
+  router.post('/addPortfolio', function(req, res) {
+    new Post({userName: req.body.userName,portfolioName: req.body.portfolioToAdd,tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
+    //res.send(200);//tells the browser that the data was send successfully
+    res.redirect("/"+req.body.userName+"/"+req.body.portfolioToAdd)
+  });
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

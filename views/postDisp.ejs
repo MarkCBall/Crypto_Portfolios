@@ -8,6 +8,13 @@
       <a href="/<%- path1 %>/<%- portName %>"<h2><%- portName %><br><br></h2></a>
      <% }) %>
 
+     <br><br><br>
+     <form method="post" action="/addPortfolio">
+       <input type="text" name="portfolioToAdd" value="New Portfolio Name">
+       <!-- make it so quotes, spaces ect can't be input -->
+       <input type="hidden" name="userName" value="<%= path1 %>">
+       <input type="submit" value="Add Portfolio">
+     </form>
 
   </body>
 </html>
