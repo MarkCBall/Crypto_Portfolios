@@ -5,15 +5,16 @@
     <h1>List of coins for user <%= path1 %> in portfolio <%= path2 %></h1>
 
     <% coins.forEach(function(coin) { %>
-      <div><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </div>
+      <div class="Row"><a><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </a>
       <form method="post" action="/deleteCoin">
-        
+
       <input type="hidden" name="userName" value="<%= path1 %>">
       <input type="hidden" name="portfolioName" value="<%= path2 %>">
       <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
 
-      <input type="submit" value="Delete Coin">
+      <div class="Lbtn"><input type="submit" value="Delete Coin"></div>
       </form>
+      </div>
      <% }) %>
 
 

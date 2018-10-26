@@ -4,14 +4,17 @@
         <a href=".."><h3>Back to previous page</h3></a>
     <h1>List of portfolios for user <%= path1 %> below</h1>
 
+    
     <% portfolios.forEach(function(portName) { %>
+      <div class="Row">
       <a href="/<%- path1 %>/<%- portName %>"<h2><%- portName %></h2></a>
-      <form method="post" action="/deletePortfolio">
+      <form method="post" action="/deletePortfolio" onsubmit="return confirm('Are you sure you want to delete this portfolio?');">
         
         <input type="hidden" name="userName" value="<%= path1 %>">
         <input type="hidden" name="portfolioName" value="<%= portName %>">
-        <input type="submit" value="Delete Portfolio">
+        <div class="Lbtn"><input type="submit" value="Delete Portfolio"></div>
         </form>
+      </div>
      <% }) %>
 
      <br><br><br>

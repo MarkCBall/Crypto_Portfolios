@@ -62,7 +62,7 @@ router.post('/addUser', function(req, res) {
 /////////////////////////////////////////////////////////////
 router.post('/deletePortfolio', function(req, res){
 
-    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName},function(error,deleteMe){
+    Post.deleteMany({userName:req.body.userName,portfolioName:req.body.portfolioName},function(error,deleteMe){
         console.log(deleteMe);
         //deleteMe.remove().exec();       
     });
@@ -73,7 +73,7 @@ router.post('/deletePortfolio', function(req, res){
   /////////////////////////////////////////////////////////////
 router.post('/deleteUser', function(req, res){
 
-    Post.findOneAndDelete({userName:req.body.userName},function(error,deleteMe){
+    Post.deleteMany({userName:req.body.userName},function(error,deleteMe){
         console.log(deleteMe);
         //deleteMe.remove().exec();       
     });
