@@ -2,10 +2,13 @@
 <html>
   <body>
     <h1>List of users below</h1>
-    
-    <% usersArray.forEach(function(userName) { %>
-      <a href="/<%- userName %>"<h2><%- userName %><br><br></h2></a>
-     <% }) %>
+
+     <div class="userRow">
+      <% usersArray.forEach(function(userName) { %>
+
+        <div><a href="/<%- userName %>"<h2><%- userName %><br><br></h2></a></div>
+      <% }) %>
+    </div>
 
   </body>
 </html>
