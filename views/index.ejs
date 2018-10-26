@@ -4,37 +4,7 @@
       <!-- document.getElementsById("username").value, -->
 
 
-        <script>
-// call this from another function
-const mongoose = require('mongoose');
-const dbConnect = require('./database');
-
-//put into separate file
-let testSchema = new mongoose.Schema({
-    userName: { type: String, required: true },
-    portfolioName: { type: String, required: true },
-    tokenTicker: { type: String, required: true },
-    tokenName: { type: String, required: true },
-    tokenAmount: { type: Number, required: true }
-});
-
-let Post = mongoose.model('Post', testSchema);
-
-dbConnect();
-
-
-        function addd(){
-          new Post({
-          userName: "test",
-          portfolioName: "test",
-          tokenTicker: "test",
-          tokenName: "test",
-          tokenAmount: 0
-          }).save((err, result));
-          console.log("user added");
-        }
-      </script>
- 
+    <!-- <script src="../routes/index.js"></script> -->
 
 
     <h1>List of users below</h1>
@@ -45,9 +15,32 @@ dbConnect();
         <div><a href="/<%- userName %>"<h2><%- userName %><br><br></h2></a></div>
       <% }) %>
     </div>
-    <br><br><br><textarea id="username">Type new username here</textarea> <button onclick="addd()">Add user</button>
+    <!-- <br><br><br><textarea id="username">Type new username here</textarea> <button onclick="addd()">Add user</button> -->
 
 
+    <br><br><br>
+    <form method="post" action="/">
+      <input type="text" name="userToAdd" value="New User Name">
+      <input type="submit" value="Add User">
+    </form>
+
+
+    <!-- And if you submit that form, in req.body for the route /, you will get the result:
+
+{ field1: 'form contents', field2: 'second field contents' }
+To run a function, just put it inside the POST handler like this:
+
+var foo = function() {
+  // do something
+};
+
+app.post('/', function(req, res) {
+  console.log(req.body);
+  res.send(200);
+
+  // sending a response does not pause the function
+  foo();
+}); -->
 
   </body>
 </html>

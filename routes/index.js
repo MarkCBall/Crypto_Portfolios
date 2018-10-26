@@ -19,6 +19,21 @@ let Post = mongoose.model('Post', testSchema);
 dbConnect();
 //////////
 
+router.post('/', function(req, res) {
+    new Post({
+        //userName: JSON.stringify(req.body),
+        userName: req.body.userToAdd,
+        portfolioName: "Default Portfolio",
+        tokenTicker: "btc",
+        tokenName: "Bitcoin",
+        tokenAmount: 0
+    }).save();
+
+    //res.send(200);//tells the browser that the data was send successfully
+    res.redirect("/"+req.body.userToAdd)
+
+  });
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     Post.distinct('userName', function(error, users) {
@@ -41,7 +56,7 @@ router.get('/:slug',function(req, res, next) {
 
 router.get('/:slug/:slug2',function(req, res, next) {
     Post.find({userName:req.params.slug, portfolioName:req.params.slug2}, function(error, coins){
-     console.log(coins[0].tokenTicker);
+     //console.log(coins[0].tokenTicker);
      //console.log(coins[1].tokenTicker);
      //console.log(coins[2].tokenTicker);
     // console.log(portfolios[1]);    
