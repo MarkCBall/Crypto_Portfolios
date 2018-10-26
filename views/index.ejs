@@ -1,6 +1,42 @@
 <!DOCTYPE html>
 <html>
   <body>
+      <!-- document.getElementsById("username").value, -->
+
+
+        <script>
+// call this from another function
+const mongoose = require('mongoose');
+const dbConnect = require('./database');
+
+//put into separate file
+let testSchema = new mongoose.Schema({
+    userName: { type: String, required: true },
+    portfolioName: { type: String, required: true },
+    tokenTicker: { type: String, required: true },
+    tokenName: { type: String, required: true },
+    tokenAmount: { type: Number, required: true }
+});
+
+let Post = mongoose.model('Post', testSchema);
+
+dbConnect();
+
+
+        function addd(){
+          new Post({
+          userName: "test",
+          portfolioName: "test",
+          tokenTicker: "test",
+          tokenName: "test",
+          tokenAmount: 0
+          }).save((err, result));
+          console.log("user added");
+        }
+      </script>
+ 
+
+
     <h1>List of users below</h1>
 
      <div class="userRow">
@@ -9,7 +45,9 @@
         <div><a href="/<%- userName %>"<h2><%- userName %><br><br></h2></a></div>
       <% }) %>
     </div>
-    <br><br><br><textarea>Type new username here</textarea> <button>Add user</button>
+    <br><br><br><textarea id="username">Type new username here</textarea> <button onclick="addd()">Add user</button>
+
+
 
   </body>
 </html>
