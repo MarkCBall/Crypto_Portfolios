@@ -36,7 +36,6 @@ router.post('/addUser', function(req, res) {
   });
 /////////////////////////////////////////////////////////////
   router.post('/addCoin', function(req, res) {
-
     new Post({
         userName: req.body.userName,
         portfolioName: req.body.portfolioName,
