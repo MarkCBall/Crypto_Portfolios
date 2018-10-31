@@ -18,9 +18,22 @@
 
 
      <br><br><br>
+     <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Click here to select a coin ▼ </button>
+          <div id="myDropdown" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+            <a href="#about">About</a>
+            <a href="#base">Base</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+            <a href="#custom">Custom</a>
+            <a href="#support">Support</a>
+            <a href="#tools">Tools</a>
+          </div>
+    </div>
      <form method="post" action="/addCoin">
-       <input type="text" name="tokenTickerToAdd" value="ticker">
-       <input type="number" name="tokenAmountToAdd" value=0>
+      <!-- <input type="text" name="tokenTickerToAdd" value="ticker"> -->
+      <input type="number" name="tokenAmountToAdd" value=0>
       
        <!-- put a box here to auto pull the coin name from ticker -->
        <!-- make it so quotes, spaces ect can't be input -->
