@@ -1,21 +1,32 @@
-var mongoose = require('mongoose')
+// this file is temporary and code will be moved elsewhere once testing is complete
+
 var express = require('express');
+var router = express.Router()
+var fetch = require("node-fetch");
 
-// users schema
-var userSchema = mongoose.Schema({
-  name:{
-    type: String,
-    required: true
-  },
-  create_date:{
-    type: Date,
-    default: Date.now
-  }
-})
+// URL variable declaration for requestCoinList function
+const LIST_URL = "https://api.coinmarketcap.com/v2/listings/"
 
-var User = module.exports = mongoose.model('User', userSchema)
-
-// get users
-module.exports.getUsers = function(callback, limit){
-  User.find(callback).limit(limit)
+// This function requests and displays top 200 coins from coin-market-cap API
+function requestCoinList() {
+    fetch(LIST_URL)
+    .then(function(result) {
+        return result.json()
+    })
+    .then(function(res) {
+        for (i=0; i<200; i++){
+            console.log(res.data[i])
+        }
+        //document.getElementById("totalSupply").innerHTML = cleanEthSupply
+    })
+    .catch(function(error) {
+        console.log(error)
+    })
 }
+
+var apiRouter = module.exports = requestCoinList()
+
+router.get('/api', function(req, res, next) {
+});
+
+module.exports = router
