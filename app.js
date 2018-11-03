@@ -2,14 +2,11 @@ var createError = require('http-errors');
 var express = require('express');//express is package for web applications
 var expressLayouts = require('express-ejs-layouts'); //why?
 var mongoose = require('mongoose') // import mongo
-var fetch = require('node-fetch') // allows fetching in api calls
-
 var path = require('path');//npm package to manipulate path strings
 var cookieParser = require('cookie-parser');//npm package to store cookies - do we use this?
 var logger = require('morgan');//what is this?
 
 var indexRouter = require('./routes/index');
-var apiRouter = require('./routes/api')
 
 var database = require('./database/database');
 database();
@@ -27,10 +24,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));//is this where browser looks?
+app.use(express.static(path.join(__dirname, 'public')));//this sets main directory for static files like js and css
 app.use(expressLayouts);
 app.use('/', indexRouter);
-app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
