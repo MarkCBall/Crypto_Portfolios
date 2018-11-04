@@ -10,7 +10,7 @@ function showCoins() {
   document.getElementById("myDropdown").classList.toggle("show");
 }
 
-// search functionality to filter thru coins in the dropdown
+//search functionality to filter thru coins in the dropdown
 function filterCoins() {
   var input, filter, ul, li, a, i;
   input = document.getElementById("myInput");
@@ -26,34 +26,50 @@ function filterCoins() {
     }
 }
 
-// takes the coins from API request and populates the dropdown list
+//takes the coin symbol and name arrays and populates dropdown list
 function populateDropdown(coinSymbol, coinName) {
   for(var i = 0; i < coinSymbol.length; i++) {
     var symbolOption = coinSymbol[i]
     var nameOption = coinName[i]
-    var a = document.createElement("a") // create new <a> element for each option
+    var a = document.createElement("a") //create new <a> element for each option
     a.textContent = `(${symbolOption}) ${nameOption}`
-    a.value = `(${symbolOption}) ${nameOption}` // set values for each option
+    a.value = `(${symbolOption}) ${nameOption}` //set values for each <a> element
     a.id = symbolOption
     a.title = nameOption
-    document.getElementById("myDropdown").appendChild(a) // add each option to the dropdown
+    document.getElementById("myDropdown").appendChild(a) //add each option to the dropdown
   }
   selectCoin()
 }
 
-// takes the selected coin and sends to a form for submission to database
+/* takes the name and symbol of selected option and
+sends to a form for submission to database */
 function selectCoin() {
   var $ = function (selector) {
     return document.querySelector(selector);
   };
 
-  function sendToPostBox() {
-    let chosenCoin = this.innerHTML
-    let chosenSymbol = this.id
-    let chosenName = this.title
-    setPostBox(chosenSymbol, chosenName, chosenCoin)
+  //create array of dropdown options
+  var choices = $('#myDropdown').getElementsByTagName('a');
+
+  /*iterate thru the array of choices and set
+  onclick attribute and function for each choice */
+  for (var i = 0; i < choices.length; i++) {
+    var choice = choices[i];
+    choice.onclick = sendToPostBox;
   }
 
+  /* grab coin symbol, name and full readout from html
+  attributes set in populateDropdown function */
+  function sendToPostBox() {
+    let chosenCoin = this.innerHTML
+    let chosenSymbol = this.id 
+    let chosenName = this.title 
+    setPostBox(chosenSymbol, chosenName, chosenCoin)
+    showCoins() //once coin is selected hide dropdown again
+  }
+
+  /* set the symbol and name value of addCoin post form
+  and display selected coin in the display box beside dropdown */
   function setPostBox(chosenSymbol, chosenName, chosenCoin) {
     let displayBox = document.getElementById("displayCoinSelection")
     let symbolBox = document.getElementById("addSymbol")
@@ -63,19 +79,13 @@ function selectCoin() {
     nameBox.value = chosenName
   }
 
-  var choices = $('#myDropdown').getElementsByTagName('a'); // create array of dropdown options
-
-  for (var i = 0; i < choices.length; i++) {
-    var choice = choices[i];
-    choice.onclick = sendToPostBox;
-  }
 }
 
 // URL variable declaration for requestCoinList function
 const LIST_URL = "https://api.coinmarketcap.com/v2/listings/"
 
-/* This function requests and creates an array of
-the top 200 coins from coin-market-cap API */
+/* This function queries coin-market-cap API for the top 200 coins,
+then creates one array for the symbols and one for the names */
 function requestCoinList() {
   fetch(LIST_URL)
   .then(function(result) {
@@ -87,11 +97,10 @@ function requestCoinList() {
     for (i=0; i<200; i++){
       let symbol = res.data[i].symbol
       let name = res.data[i].name
-      //var coin = `(${symbol}) ${name}`
       coinSymbol.push(symbol)
       coinName.push(name)
     }
-  console.log(coinName)
+  //console.log(coinName, coinSymbol)
   populateDropdown(coinSymbol, coinName)
   })
   .catch(function(error) {
