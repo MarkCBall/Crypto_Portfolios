@@ -10,7 +10,7 @@
     <h1>List of coins for <%= path1 %> in <%= path2 %></h1>
 
     <% coins.forEach(function(coin) { %>
-      <div><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </div>
+      <div><%- coin.tokenTicker %> - <%- coin.tokenName %> -- <%- coin.tokenAmount %> </div>
       <form method="post" action="/deleteCoin">
         
         <input type="hidden" name="userName" value="<%= path1 %>">
@@ -24,18 +24,21 @@
 
      <br><br><br>
      <form method="post" action="/addCoin">
-        <input id="addToken" type="text" name="tokenTickerToAdd" value="" readonly></div>
-        <input type="number" name="tokenAmountToAdd" value=0>
+        <input id="addSymbol" type="hidden" name="tokenTickerToAdd" value="" readonly>
+        <input id="addName" type="hidden" name="tokenNameToAdd" value="" readonly>
+        <input type="number" name="tokenAmountToAdd" value="" placeholder="Amount Owned">
         <input type="hidden" name="userName" value="<%= path1 %>">
         <input type="hidden" name="portfolioName" value="<%= path2 %>">
         <input type="submit" value="Add Coin">
      </form>
+
      <div class="dropdown">
       <button onclick="showCoins()" class="dropbtn">Click here to select a coin ▼</button>
         <div id="myDropdown" class="dropdown-content">
           <input type="text" placeholder="Search.." id="myInput" onkeyup="filterCoins()">
         </div>
      </div>
+     <input id="displayCoinSelection" type="text" value="" readonly>
 
   </body>
 </html>

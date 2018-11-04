@@ -40,7 +40,7 @@ router.post('/addUser', function(req, res) {
         userName: req.body.userName,
         portfolioName: req.body.portfolioName,
         tokenTicker: req.body.tokenTickerToAdd,
-        tokenName: "deleteme",
+        tokenName: req.body.tokenNameToAdd,
         tokenAmount: req.body.tokenAmountToAdd
     }).save();
 
