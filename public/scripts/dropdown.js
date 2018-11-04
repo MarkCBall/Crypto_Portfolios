@@ -27,13 +27,15 @@ function filterCoins() {
 }
 
 // takes the coins from API request and populates the dropdown list
-function populateDropdown(coinList) {
-  for(var i = 0; i < coinList.length; i++) {
-    var coinOption = coinList[i]
-    var a = document.createElement("a") // create new element for each option
-    a.textContent = coinOption 
-    a.value = coinOption // set values for each option
-    a.id = coinOption
+function populateDropdown(coinSymbol, coinName) {
+  for(var i = 0; i < coinSymbol.length; i++) {
+    var symbolOption = coinSymbol[i]
+    var nameOption = coinName[i]
+    var a = document.createElement("a") // create new <a> element for each option
+    a.textContent = `(${symbolOption}) ${nameOption}`
+    a.value = `(${symbolOption}) ${nameOption}` // set values for each option
+    a.id = symbolOption
+    a.title = nameOption
     document.getElementById("myDropdown").appendChild(a) // add each option to the dropdown
   }
   selectCoin()
@@ -46,13 +48,19 @@ function selectCoin() {
   };
 
   function sendToPostBox() {
-    let chosenCoin = this.innerHTML 
-    setPostBox(chosenCoin)
+    let chosenCoin = this.innerHTML
+    let chosenSymbol = this.id
+    let chosenName = this.title
+    setPostBox(chosenSymbol, chosenName, chosenCoin)
   }
 
-  function setPostBox(coinToPost) {
-    let addToken = document.getElementById("addToken")
-    addToken.value = coinToPost
+  function setPostBox(chosenSymbol, chosenName, chosenCoin) {
+    let displayBox = document.getElementById("displayCoinSelection")
+    let symbolBox = document.getElementById("addSymbol")
+    let nameBox = document.getElementById("addName")
+    displayBox.value = chosenCoin
+    symbolBox.value = chosenSymbol
+    nameBox.value = chosenName
   }
 
   var choices = $('#myDropdown').getElementsByTagName('a'); // create array of dropdown options
@@ -74,16 +82,17 @@ function requestCoinList() {
     return result.json()
   })
   .then(function(res) {
-    coinList = []
+    coinSymbol = []
+    coinName = []
     for (i=0; i<200; i++){
       let symbol = res.data[i].symbol
-      //let name = res.data[i].name
+      let name = res.data[i].name
       //var coin = `(${symbol}) ${name}`
-      var coin = symbol
-      coinList.push(coin)
+      coinSymbol.push(symbol)
+      coinName.push(name)
     }
-  console.log(coinList)
-  populateDropdown(coinList)
+  console.log(coinName)
+  populateDropdown(coinSymbol, coinName)
   })
   .catch(function(error) {
   console.log(error)
