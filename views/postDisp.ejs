@@ -2,7 +2,7 @@
 <html>
   <body>
         <a href=".."><h3>Back to previous page</h3></a>
-    <h1>List of portfolios for user <%= path1 %> below</h1>
+    <h1>List of portfolios for <%= path1 %></h1>
 
     <% portfolios.forEach(function(portName) { %>
       <a href="/<%- path1 %>/<%- portName %>"<h2><%- portName %></h2></a>
@@ -12,11 +12,12 @@
         <input type="hidden" name="portfolioName" value="<%= portName %>">
         <input type="submit" value="Delete Portfolio">
         </form>
+      <br>
      <% }) %>
 
      <br><br><br>
      <form method="post" action="/addPortfolio">
-       <input type="text" name="portfolioToAdd" value="New_Portfolio_Name">
+       <input type="text" name="portfolioToAdd" value="" placeholder="Enter portfolio name">
        <!-- make it so quotes, spaces ect can't be input -->
        <input type="hidden" name="userName" value="<%= path1 %>">
        <input type="submit" value="Add Portfolio">

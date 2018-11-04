@@ -7,7 +7,7 @@
     <!-- <script src="../routes/index.js"></script> -->
 
 
-    <h1>List of users below</h1>
+    <h1>List of users</h1>
 
      <div class="userRow">
       <% usersArray.forEach(function(userName) { %>
@@ -19,6 +19,7 @@
           <input type="submit" value="Delete User">
         </div>
           </form>
+        <br>
 
 
       <% }) %>
@@ -28,7 +29,7 @@
 
     <br><br><br>
     <form method="post" action="/addUser">
-      <input type="text" name="userToAdd" value="New_User_Name">
+      <input type="text" name="userToAdd" value="" placeholder="Enter a username">
       <!-- make it so quotes, spaces ect can't be input -->
       <input type="submit" value="Add User">
     </form>
