@@ -28,12 +28,11 @@ router.post('/addUser', function(req, res) {
   });
 /////////////////////////////////////////////////////////////
   router.post('/addCoin', function(req, res) {
-
     new Post({
         userName: req.body.userName,
         portfolioName: req.body.portfolioName,
         tokenTicker: req.body.tokenTickerToAdd,
-        tokenName: "deleteme",
+        tokenName: req.body.tokenNameToAdd,
         tokenAmount: req.body.tokenAmountToAdd
     }).save();
 
@@ -43,7 +42,19 @@ router.post('/addUser', function(req, res) {
 
 ////////////DELETE FROM DATABASE//////////////////////////////
 /////////////////////////////////////////////////////////////
-  router.post('/deleteCoin', function(req, res){
+  router.post('/updateAmount', function(req, res){
+
+    Post.findOneAndUpdate({userName:req.body.userName,portfolioName:req.body.portfolioName,tokenTicker:req.body.tokenTicker},{$set:{tokenAmount:req.body.newAmount}},{new: true}, function(error,doc){
+        if(error){
+            console.log(error)
+        }
+        console.log(doc)
+    });
+    res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
+  });
+
+/////////////////////////////////////////////////////////////
+router.post('/deleteCoin', function(req, res){
 
     Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName,tokenTicker:req.body.coinTicker},function(error,deleteMe){
         console.log(deleteMe);

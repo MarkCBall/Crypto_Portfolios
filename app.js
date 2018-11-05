@@ -2,34 +2,17 @@ var createError = require('http-errors');
 var express = require('express');//express is package for web applications
 var expressLayouts = require('express-ejs-layouts'); //why?
 var mongoose = require('mongoose') // import mongo
-User = require('./routes/api')
-
 var path = require('path');//npm package to manipulate path strings
 var cookieParser = require('cookie-parser');//npm package to store cookies - do we use this?
 var logger = require('morgan');//what is this?
 
 var indexRouter = require('./routes/index');
 
-
 var database = require('./database/database');
 database(); //why is this needed?
 
 var app = express();
 
-
-//DYLAN's CODE  - do you still need this?
-// // Connect to mongoose
-// mongoose.connect('mongodb://localhost:27017/testdb')
-// var db = mongoose.connection
-
-// app.get('/api', function(req, res){
-//   User.getUsers(function(err, users){
-//     if(err){
-//       throw err
-//     }
-//     res.json(users)
-//   })
-// })
 
 // Set layout
 app.set('layout', 'layout')//what is this?
@@ -42,7 +25,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));//is this where browser looks?
+app.use(express.static(path.join(__dirname, 'public')));//this sets main directory for static files like js and css
 app.use(expressLayouts);
 app.use('/', indexRouter);
 

@@ -16,8 +16,12 @@ form {
   border-bottom: 3px solid blue;
 }
 
+
 .Lbtn{
   /* display: inline-block; */
   /* text-align: center; */
   padding-left: 20px;
+
+.userRow div {
+  border-bottom: 1px solid red;
 }

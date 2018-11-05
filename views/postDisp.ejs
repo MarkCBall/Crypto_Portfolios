@@ -2,7 +2,7 @@
 <html>
   <body>
         <a href=".."><h3>Back to previous page</h3></a>
-    <h1>List of portfolios for user <%= path1 %> below</h1>
+    <h1>List of portfolios for <%= path1 %></h1>
 
     <!-- LIST OF ALL PORTOLIOS WITH DELETE BUTTON -->
     <% portfolios.forEach(function(portName) { %>
@@ -14,13 +14,20 @@
         <input type="hidden" name="portfolioName" value="<%= portName %>">
         <div class="Lbtn"><input type="submit" value="Delete Portfolio"></div>
         </form>
+
       </div>
+
+      <br>
+
      <% }) %>
 
      <br><br><br>
      <!-- ADD PORTFOLIO BUTTON -->
      <form method="post" action="/addPortfolio">
+
        <input type="text" name="portfolioToAdd" value="New_Portfolio_Name" pattern="[0-9A-Za-z_]*">
+
+       <input type="text" name="portfolioToAdd" value="" placeholder="Enter portfolio name">
        <!-- make it so quotes, spaces ect can't be input -->
        <input type="hidden" name="userName" value="<%= path1 %>">
        <input type="submit" value="Add Portfolio">
