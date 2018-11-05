@@ -9,9 +9,10 @@ var logger = require('morgan');//what is this?
 var indexRouter = require('./routes/index');
 
 var database = require('./database/database');
-database();
+database(); //why is this needed?
 
 var app = express();
+
 
 // Set layout
 app.set('layout', 'layout')//what is this?

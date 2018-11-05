@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
   <body>
-      <!-- document.getElementsById("username").value, -->
-
-
-    <!-- <script src="../routes/index.js"></script> -->
-
 
     <h1>List of users</h1>
 
-     <div class="userRow">
+     <!-- LIST OF ALL USERS WITH DELETE BUTTON -->
       <% usersArray.forEach(function(userName) { %>
-
-        <div><a href="/<%- userName %>"<h2><%- userName %></h2></a>
-        <form method="post" action="/deleteUser">
+        <div class="Row">
+        <a href="/<%- userName %>"<h2><%- userName %></a>
+        <form method="post" action="/deleteUser" onsubmit="return confirm('Are you sure you want to delete this user?');">
         
           <input type="hidden" name="userName" value="<%= userName %>">
-          <input type="submit" value="Delete User">
+          <div class="Lbtn"><input type="submit" value="Delete User"></div>
         </div>
           </form>
-        <br>
-
 
       <% }) %>
-    </div>
-    <!-- <br><br><br><textarea id="username">Type new username here</textarea> <button onclick="addd()">Add user</button> -->
+
 
 
     <br><br><br>
+    <!-- ADD USER BUTTON -->
+
+    <!-- disallow duplicates -->
     <form method="post" action="/addUser">
-      <input type="text" name="userToAdd" value="" placeholder="Enter a username">
+
+      <input type="text" name="userToAdd" value="New_User_Name" pattern="[0-9A-Za-z_]*">
+      <!-- TODO - add tooltip allowable chars -->
+
+      <!-- <input type="text" name="userToAdd" value="" placeholder="Enter a username"> -->
       <!-- make it so quotes, spaces ect can't be input -->
+
       <input type="submit" value="Add User">
     </form>
 

@@ -1,20 +1,24 @@
-
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+//////////////////////////////////////////////
+/////////////DEVELOPMENT FILE////////////////
+//////////////////////////////////////////////
 
 const mongoose = require('mongoose');
 const dbConnect = require('./database');
 
-//put into separate file
-let testSchema = new mongoose.Schema({
-    userName: { type: String, required: true },
-    portfolioName: { type: String, required: true },
-    tokenTicker: { type: String, required: true },
-    tokenName: { type: String, required: true },
-    tokenAmount: { type: Number, required: true }
-});
+// //put into separate file
+// let testSchema = new mongoose.Schema({
+//     userName: { type: String, required: true },
+//     portfolioName: { type: String, required: true },
+//     tokenTicker: { type: String, required: true },
+//     tokenName: { type: String, required: true },
+//     tokenAmount: { type: Number, required: true }
+// });
 
-let Post = mongoose.model('Post', testSchema);
-
-dbConnect();
+// let Post = mongoose.model('Post', testSchema);
+const Post = require("./../models/coins");
+//dbConnect();
 
 var posts = [
     new Post({

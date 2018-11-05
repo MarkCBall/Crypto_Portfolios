@@ -1,17 +1,4 @@
-
-// let mongoose = require('mongoose');
-
-// const connect = () => {
-// 	mongoose.connect('mongodb://moball:123456a@ds047335.mlab.com:47335/gbc-blogapp-db')
-// 		.then(() => { console.log(`Connected to mongodb`)})
-// 		.catch(err => { console.log(err)});
-// };
-
-
-// module.exports = connect;
-
-
-//mongodb://<dbuser>:<dbpassword>@ds047335.mlab.com:47335/gbc-blogapp-db
+//JS file to connect to the mlab database
 
 let mongoose = require('mongoose');
 
@@ -23,7 +10,7 @@ const password = '123456a';
 const connectionString = `mongodb://${user}:${password}@${server}/${dbName}`;
 
 const connect = () => {
-	mongoose.connect(connectionString)
+	mongoose.connect(connectionString, { useNewUrlParser: true })
 		.then(() => { console.log(`Connected to mongodb at : ${connectionString}`)})
 		.catch(err => { console.log(err)});
 };
