@@ -17,18 +17,13 @@ npm run windows
 
 ## To Do
 
-Step 1) Build the website routes for porfolios connected to database backend
-    
-  1a) Optimize database model for crypto portfolio
-  
-  1b) Optimize database model for crypto ticker+names
+1)figure out res.redirect() alternative that doesn't need a res.refresh after
+2)CSS and style work
+3)move code into modules and into MVC structure
+4)automative the search coin button so no click is needed
+5)integrate current coin price into coin tracker
+    -can calculate portfolio value in portfolio screen
+6)server side check for allowable form submissions
+    -indicate to user what is allowable ie a-zA-Z1-9.
+7)change DB structure into arrays of sub schemas
 
-  1c) Allow user to edit the amount owned for each coin and update database
-
-Step 2) Finish front-end JS 
-
-  2a) Complete coin selection process, pass selected coin from dropdown to database
-
-  2b) Once user has added coin to portfolio, display relevant info from coinmarketcap API
-
-Step 3) Introduce CSS framework following the in-class lesson
