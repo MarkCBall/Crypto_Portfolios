@@ -12,18 +12,19 @@
     <!-- LIST OF ALL COINS WITH DELETE BUTTON -->
     <% coins.forEach(function(coin) { %>
 
-      <div class="Row"><a><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </a>
-      <form method="post" action="/deleteCoin">
+      <div class="Row">
+        <!-- <a><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </a> -->
+      <!-- <form method="post" action="/deleteCoin"> -->
 
-      <input type="hidden" name="userName" value="<%= path1 %>">
-      <input type="hidden" name="portfolioName" value="<%= path2 %>">
-      <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
+      <!-- <input type="hidden" name="userName" value="<%= path1 %>"> -->
+      <!-- <input type="hidden" name="portfolioName" value="<%= path2 %>"> -->
+      <!-- <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>"> -->
 
         <!-- ADD CURRENT PRICE PER COIN AND VALUE OF COIN -->
 
-      <div class="Lbtn"><input type="submit" value="Delete Coin"></div>
+      <!-- <div class="Lbtn"><input type="submit" value="Delete Coin"></div> -->
       </form>
-      </div>
+
       <div><%- coin.tokenTicker %> - <%- coin.tokenName %> -- <%- coin.tokenAmount %> </div>
 
       <form method="post" action="/updateAmount">
@@ -40,6 +41,7 @@
         <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
         <input type="submit" value="Delete Coin">
       </form>
+    </div>
       <br>
 
      <% }) %>
