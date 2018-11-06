@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <body>
-        <a href=".."><h3>Back to previous page</h3></a>
-    <h1>List of portfolios for <%= path1 %></h1>
+    <a href=".."><h6>Back to previous page</h6></a>
+    <h2>List of portfolios for <%= path1 %></h2>
 
     <!-- LIST OF ALL PORTOLIOS WITH DELETE BUTTON -->
     <% portfolios.forEach(function(portName) { %>
@@ -24,11 +24,7 @@
      <br><br><br>
      <!-- ADD PORTFOLIO BUTTON -->
      <form method="post" action="/addPortfolio">
-
-       <input type="text" name="portfolioToAdd" value="New_Portfolio_Name" pattern="[0-9A-Za-z_]*">
-
-       <!-- <input type="text" name="portfolioToAdd" value="" placeholder="Enter portfolio name"> -->
-       <!-- make it so quotes, spaces ect can't be input -->
+       <input type="text" name="portfolioToAdd" value="" pattern="[0-9A-Za-z_]*" data-toggle="tooltip" title="letters, numbers and underscores only" placeholder="Enter a portfolio name">
        <input type="hidden" name="userName" value="<%= path1 %>">
        <input type="submit" value="Add Portfolio">
      </form>
