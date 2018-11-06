@@ -8,6 +8,7 @@ window.onload= function() {
 hiding and showing the dropdown content */
 function showCoins() {
   document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("myInput").focus()
 }
 
 //search functionality to filter thru coins in the dropdown
