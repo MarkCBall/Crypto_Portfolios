@@ -1,7 +1,7 @@
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: rgb(78, 76, 175);
+    background-color: blue;
     color: white;
     padding: 8px;
     margin-top: 6px;
@@ -12,7 +12,7 @@
   
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-    background-color:rgb(78, 76, 175);
+    background-color:blue;
 }
   
 /* The search field */
