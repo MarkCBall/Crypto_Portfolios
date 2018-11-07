@@ -11,6 +11,13 @@ function showCoins() {
   document.getElementById("myInput").focus()
 }
 
+/* When user clicks on a coin show
+the addAmount input and submitForm button */
+function showAmount() {
+  document.getElementById("addAmount").style.visibility = "visible"
+  document.getElementById("submitAddCoin").style.visibility = "visible"
+}
+
 //search functionality to filter thru coins in the dropdown
 function filterCoins() {
   var input, filter, ul, li, a, i;
@@ -66,6 +73,7 @@ function selectCoin() {
     let chosenSymbol = this.id 
     let chosenName = this.title 
     setPostBox(chosenSymbol, chosenName, chosenCoin)
+    showAmount() //once coin is selected show amount box and submit button
     showCoins() //once coin is selected hide dropdown again
   }
 
