@@ -5,7 +5,7 @@
     <script src="/scripts/dropdown.js"></script>
   </head>
   <body>
-    <a href="/<%= path1 %>"><h6>Back to previous page</h6></a>
+      <h6><a href="/<%= path1 %>">Back to previous page</a></h6>
 
     <h2>List of coins for <%= path1 %> in <%= path2 %></h2>
 
@@ -39,6 +39,7 @@
         <input type="hidden" name="userName" value="<%= path1 %>">
         <input type="hidden" name="portfolioName" value="<%= path2 %>">
         <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
+        <input type="hidden" name="tokenAmount" value="<%= coin.tokenAmount %>">
         <input type="submit" value="Delete Coin">
       </form>
     </div>
