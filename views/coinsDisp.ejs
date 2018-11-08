@@ -5,7 +5,7 @@
     <script src="/scripts/dropdown.js"></script>
   </head>
   <body>
-    <a href="/<%= path1 %>"><h6>Back to previous page</h6></a>
+      <h6><a href="/<%= path1 %>">Back to previous page</a></h6>
 
     <h2>List of coins for <%= path1 %> in <%= path2 %></h2>
 
@@ -39,6 +39,7 @@
         <input type="hidden" name="userName" value="<%= path1 %>">
         <input type="hidden" name="portfolioName" value="<%= path2 %>">
         <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
+        <input type="hidden" name="tokenAmount" value="<%= coin.tokenAmount %>">
         <input type="submit" value="Delete Coin">
       </form>
     </div>
@@ -49,22 +50,24 @@
 
      <br><br><br>
      <!-- ADD COIN FORM AND BUTTON -->
-     <form method="post" action="/addCoin">
-        <input id="addSymbol" type="hidden" name="tokenTickerToAdd" value="" readonly>
-        <input id="addName" type="hidden" name="tokenNameToAdd" value="" readonly>
-        <input type="number" name="tokenAmountToAdd" value="" placeholder="Enter Amount Owned">
-        <input type="hidden" name="userName" value="<%= path1 %>">
-        <input type="hidden" name="portfolioName" value="<%= path2 %>">
-        <input type="submit" value="Add Coin">
-     </form>
-
-     <input id="displayCoinSelection" type="text" value="" placeholder="Selected Coin" readonly>
      <div class="dropdown">
       <button onclick="showCoins()" class="dropbtn">Click here to select a coin ▼</button>
         <div id="myDropdown" class="dropdown-content">
           <input type="text" placeholder="Search.." id="myInput" onkeyup="filterCoins()">
         </div>
      </div>
+
+     <input id="displayCoinSelection" type="text" value="" placeholder="Selected Coin" readonly>
+
+     <form method="post" action="/addCoin">
+        <input id="addSymbol" type="hidden" name="tokenTickerToAdd" value="" readonly>
+        <input id="addName" type="hidden" name="tokenNameToAdd" value="" readonly>
+        <input id="addAmount" class="input-content" type="number" name="tokenAmountToAdd" value="" placeholder="Enter Amount Owned">
+        <input type="hidden" name="userName" value="<%= path1 %>">
+        <input type="hidden" name="portfolioName" value="<%= path2 %>">
+        <input id="submitAddCoin" type="submit" class="input-content" value="Add Coin">
+     </form>
+
 
   </body>
 </html>
