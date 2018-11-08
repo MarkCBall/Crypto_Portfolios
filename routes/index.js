@@ -16,7 +16,6 @@ router.post('/addUser', function(req, res) {
     new Post({userName: req.body.userToAdd,portfolioName: "Default",tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
     //res.send(200);//tells the browser that the data was send successfully
     res.redirect("/"+req.body.userToAdd)
-    res.refresh();
   });
 
 /////////////////////////////////////////////////////////////
@@ -24,7 +23,6 @@ router.post('/addUser', function(req, res) {
     new Post({userName: req.body.userName,portfolioName: req.body.portfolioToAdd,tokenTicker: "btc",tokenName: "Bitcoin",tokenAmount: 0}).save();
     //res.send(200);//tells the browser that the data was send successfully
     res.redirect("/"+req.body.userName+"/"+req.body.portfolioToAdd)
-    res.refresh()
   });
 /////////////////////////////////////////////////////////////
   router.post('/addCoin', function(req, res) {
@@ -37,7 +35,6 @@ router.post('/addUser', function(req, res) {
     }).save();
 
         res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
-        res.refresh();
   });
 
 ////////////DELETE FROM DATABASE//////////////////////////////
@@ -56,7 +53,7 @@ router.post('/addUser', function(req, res) {
 /////////////////////////////////////////////////////////////
 router.post('/deleteCoin', function(req, res){
 
-    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName,tokenTicker:req.body.coinTicker},function(error,deleteMe){
+    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName,tokenTicker:req.body.coinTicker,tokenAmount:req.body.tokenAmount},function(error,deleteMe){
         console.log(deleteMe);
         //deleteMe.remove().exec();       
     });
@@ -91,7 +88,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/:slug',function(req, res, next) {
     Post.distinct('portfolioName',{userName:req.params.slug}, function(error, portfolios) {
-    res.render('postDisp', {path1: req.params.slug, portfolios:portfolios} ); 
+    res.render('portDisp', {path1: req.params.slug, portfolios:portfolios} ); 
     });
 
 });
