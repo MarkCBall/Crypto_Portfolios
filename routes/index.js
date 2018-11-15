@@ -37,7 +37,7 @@ router.post('/addUser', function(req, res) {
         res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
   });
 
-////////////DELETE FROM DATABASE//////////////////////////////
+////////////UPDATE//////////////////////////////
 /////////////////////////////////////////////////////////////
   router.post('/updateAmount', function(req, res){
 
@@ -50,43 +50,38 @@ router.post('/addUser', function(req, res) {
     res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
   });
 
-/////////////////////////////////////////////////////////////
-router.post('/deleteCoin', function(req, res){
 
-    Post.findOneAndDelete({userName:req.body.userName,portfolioName:req.body.portfolioName,tokenTicker:req.body.coinTicker,tokenAmount:req.body.tokenAmount},function(error,deleteMe){
-        console.log(deleteMe);
-        //deleteMe.remove().exec();       
+//DELETE COIN ROUTER  -- error handling to be completed
+//will delete all coins with ticker
+  router.delete('/:userToDelete/:portToDelete/:coinToDelete', function(req, res, next){
+    Post.deleteMany({
+        userName:req.params.userToDelete,
+        portfolioName:req.params.portToDelete,
+        tokenTicker:req.params.coinToDelete
+    },  function(err){
+            if (err) return next(err);
+            res.send();
     });
-    res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
-  });
-/////////////////////////////////////////////////////////////
-router.post('/deletePortfolio', function(req, res){
-
-    Post.deleteMany({userName:req.body.userName,portfolioName:req.body.portfolioName},function(error,deleteMe){
-        console.log(deleteMe);
-        //deleteMe.remove().exec();       
-    });
-    res.redirect("/"+req.body.userName)
   });
 
-  /////////////////////////////////////////////////////////////
-// router.post('/deleteUser', function(req, res){
-//     Post.deleteMany({userName:req.body.userName},function(error,deleteMe){
-//         console.log(deleteMe);      
-//     });
-//     res.redirect("/")
-//   });
+//DELETE PORTFOLIO ROUTER  -- error handling to be completed
+  router.delete('/:userToDelete/:portToDelete', function(req, res, next){
+    Post.deleteMany({
+        userName:req.params.userToDelete,
+        portfolioName:req.params.portToDelete
+    },  function(err){
+            if (err) return next(err);
+            res.send();
+    });
+  });
 
-//   router.post('/:userToDelete', function(req, res){
-//     Post.deleteMany({userName:req.params.userToDelete},function(error){//,deleteMe){
-//         res.redirect(303,"/")
-//     });
-//   });
-
-  router.delete('/:userToDelete', function(req, res){
-    Post.deleteMany({userName:req.params.userToDelete},function(error){
-        res.send();
-
+  //DELETE USER ROUTER - error handling to be completed
+  router.delete('/:userToDelete', function(req, res, next){
+    Post.deleteMany({
+        userName:req.params.userToDelete
+    },  function(err){
+            if (err) return next(err);
+            res.send();
     });
   });
 

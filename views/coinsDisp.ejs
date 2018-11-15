@@ -35,13 +35,15 @@
         <input type="submit" value="Update Amount">
       </form>
       
-      <form method="post" action="/deleteCoin">
-        <input type="hidden" name="userName" value="<%= path1 %>">
-        <input type="hidden" name="portfolioName" value="<%= path2 %>">
-        <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
-        <input type="hidden" name="tokenAmount" value="<%= coin.tokenAmount %>">
-        <input type="submit" value="Delete Coin">
-      </form>
+
+
+      <button onclick="fetch('/<%= path1 %>/<%= path2 %>/<%= coin.tokenTicker %>', {method: 'DELETE'})
+        .then(function() {window.location='/<%= path1 %>/<%= path2 %>'})">
+          Delete Coin
+        </button>
+
+
+
     </div>
       <br>
 
