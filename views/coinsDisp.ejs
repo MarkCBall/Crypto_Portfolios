@@ -34,6 +34,15 @@
         <input type="number" name="newAmount" value="" placeholder="Enter New Amount">
         <input type="submit" value="Update Amount">
       </form>
+
+      <button onclick="fetch
+          ('/<%= path1 %>/<%= path2 %>/<%= coin.tokenTicker %>', 
+          {
+            method: 'PUT',
+            body: JSON.stringify({newAmount:'5'})
+          }).then(function() {window.location='/<%= path1 %>/<%= path2 %>'})"
+      >Update aaaaAmount
+      </button>
       
 
 

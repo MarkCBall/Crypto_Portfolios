@@ -50,6 +50,28 @@ router.post('/addUser', function(req, res) {
     res.redirect("/"+req.body.userName+"/"+req.body.portfolioName)
   });
 
+  router.put('/:userToDelete/:portToDelete/:coinToDelete', function(req, res, next){
+    Post.findOneAndUpdate({
+        userName:req.params.userToDelete,
+        portfolioName:req.params.portToDelete,
+        tokenTicker:req.params.coinToDelete
+        },
+        {$set:{tokenAmount:req.body.newAmount}},
+        {new: true}, 
+        function(error,doc){}
+    )
+    console.log(req.body.newAmount)
+    //Post.deleteMany({
+        //console.log(req.params.userToDelete)
+        //portfolioName:req.params.portToDelete,
+        //tokenTicker:req.params.coinToDelete
+    // },  function(err){
+    //         if (err) return next(err);
+    //         res.send();
+    });
+
+
+
 
 //DELETE COIN ROUTER  -- error handling to be completed
 //will delete all coins with ticker
