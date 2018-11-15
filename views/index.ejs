@@ -8,14 +8,15 @@
       <% usersArray.forEach(function(userName) { %>
         <div class="Row">
           <a href="/<%- userName %>"<h2><%- userName %></a>
-          <form method="post" action="/deleteUser" onsubmit="return confirm('Are you sure you want to delete this user?');">
 
-          <input type="hidden" name="userName" value="<%= userName %>">
-          <div class="Lbtn"><input type="submit" value="Delete User"></div>
-          </form>
+          <button onclick="if (confirm('Are you sure you want to delete this portfolio?')){
+          fetch('/<%- userName %>', {method: 'DELETE'})
+          .then(function() {window.location='/'})}">
+            Delete User
+          </button>
+
         </div>
         <br>
-
       <% }) %>
 
 
@@ -24,7 +25,7 @@
     <!-- ADD USER BUTTON -->
 
     <!-- disallow duplicates -->
-    <form method="post" action="/addUser">
+        <form method="post" action="/addUser">
       <input id="addUser" type="text" name="userToAdd" value="" pattern="[0-9A-Za-z_]*" data-toggle="tooltip" title="letters, numbers and underscores only" placeholder="Enter a username">
       <input type="submit" value="Add User">
     </form>
@@ -32,3 +33,7 @@
 
   </body>
 </html>
+
+
+
+          

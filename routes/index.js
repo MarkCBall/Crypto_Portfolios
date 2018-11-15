@@ -70,13 +70,27 @@ router.post('/deletePortfolio', function(req, res){
   });
 
   /////////////////////////////////////////////////////////////
-router.post('/deleteUser', function(req, res){
+// router.post('/deleteUser', function(req, res){
+//     Post.deleteMany({userName:req.body.userName},function(error,deleteMe){
+//         console.log(deleteMe);      
+//     });
+//     res.redirect("/")
+//   });
 
-    Post.deleteMany({userName:req.body.userName},function(error,deleteMe){
-        console.log(deleteMe);      
+//   router.post('/:userToDelete', function(req, res){
+//     Post.deleteMany({userName:req.params.userToDelete},function(error){//,deleteMe){
+//         res.redirect(303,"/")
+//     });
+//   });
+
+  router.delete('/:userToDelete', function(req, res){
+    Post.deleteMany({userName:req.params.userToDelete},function(error){
+        res.send();
+
     });
-    res.redirect("/")
   });
+
+
 
 ////////////DISPLAY FROM DATABASE/////////////////////////////
 /////////////////////////////////////////////////////////////
