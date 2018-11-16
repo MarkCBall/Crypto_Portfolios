@@ -1,14 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const mongoose = require('mongoose');
-const dbConnect = require('./../database/database');
-//dbConnect();
-
 const Post = require("./../models/coins");
-
-
-
 
 //////User Screen Routers
 router.get('/', function(req, res, next) {
