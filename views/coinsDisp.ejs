@@ -4,6 +4,30 @@
     <link rel='stylesheet' href='/stylesheets/dropdown.css' />
     <script src="/scripts/dropdown.js"></script>
   </head>
+
+
+  <script>
+      function updatePrice(symb,numOwned){
+    
+          fetch("https://api.coinmarketcap.com/v2/ticker/")
+          .then(function(result) {
+          return result.json()
+          })
+          .then(function(res) {
+            for (let i=0;i<res.metadata.num_cryptocurrencies;i++) {
+              if (res.data[i])
+                if (symb.toUpperCase() == res.data[i].symbol.toUpperCase()){
+                  let str = "Current price: " + res.data[i].quotes.USD.price 
+                  str += " Total owned: " + res.data[i].quotes.USD.price*numOwned
+                  document.getElementById(symb.toUpperCase()).innerHTML=  str
+                } 
+            }
+          });
+      }
+      </script>
+
+
+
   <body>
       <h6><a href="/<%= path1 %>">Back to previous page</a></h6>
 
@@ -11,40 +35,40 @@
 
     <!-- LIST OF ALL COINS WITH DELETE BUTTON -->
     <% coins.forEach(function(coin) { %>
-
       <div class="Row">
-        <!-- <a><%- coin.tokenTicker %> --- <%- coin.tokenName %> --- <%- coin.tokenAmount %> </a> -->
-      <!-- <form method="post" action="/deleteCoin"> -->
+        <!-- display ticker, name and amount -->
+        <div><%- coin.tokenTicker %> - <%- coin.tokenName %> -- <%- coin.tokenAmount %> </div>
+        <div id="<%- coin.tokenTicker %>" onclick="updatePrice('<%- coin.tokenTicker %>',<%- coin.tokenAmount %>);">Click to show price</div>
+       
+        
+ 
 
-      <!-- <input type="hidden" name="userName" value="<%= path1 %>"> -->
-      <!-- <input type="hidden" name="portfolioName" value="<%= path2 %>"> -->
-      <!-- <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>"> -->
 
-        <!-- ADD CURRENT PRICE PER COIN AND VALUE OF COIN -->
 
-      <!-- <div class="Lbtn"><input type="submit" value="Delete Coin"></div> -->
-      </form>
 
-      <div><%- coin.tokenTicker %> - <%- coin.tokenName %> -- <%- coin.tokenAmount %> </div>
 
-      <form method="post" action="/updateAmount">
-        <input type="hidden" name="userName" value="<%= path1 %>">
-        <input type="hidden" name="portfolioName" value="<%= path2 %>">
-        <input type="hidden" name="tokenTicker" value="<%= coin.tokenTicker %>">
-        <input type="number" name="newAmount" value="" placeholder="Enter New Amount">
-        <input type="submit" value="Update Amount">
-      </form>
-      
-      <form method="post" action="/deleteCoin">
-        <input type="hidden" name="userName" value="<%= path1 %>">
-        <input type="hidden" name="portfolioName" value="<%= path2 %>">
-        <input type="hidden" name="coinTicker" value="<%= coin.tokenTicker %>">
-        <input type="hidden" name="tokenAmount" value="<%= coin.tokenAmount %>">
-        <input type="submit" value="Delete Coin">
-      </form>
+
+        <!-- box to input how many coins to update to and update button -->
+        <input id="newAmount" type="number">
+        <button onclick="fetch
+            ('/<%= path1 %>/<%= path2 %>/<%= coin.tokenTicker %>', 
+            {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({newAmount:document.getElementById('newAmount').value})
+            }).then(function() {window.location='/<%= path1 %>/<%= path2 %>'})"
+        >Update Amount
+        </button>
+
+        <!-- delete button -->
+        <button onclick="fetch('/<%= path1 %>/<%= path2 %>/<%= coin.tokenTicker %>', {method: 'DELETE'})
+          .then(function() {window.location='/<%= path1 %>/<%= path2 %>'})">
+            Delete Coin
+          </button>
     </div>
-      <br>
-
      <% }) %>
 
 

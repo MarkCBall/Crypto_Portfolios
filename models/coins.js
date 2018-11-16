@@ -1,8 +1,4 @@
-// var express = require('express');
-// var router = express.Router();
-
 const mongoose = require('mongoose');
-const dbConnect = require('./../database/database');
 
 let testSchema = new mongoose.Schema({
     userName: { type: String, required: true },
