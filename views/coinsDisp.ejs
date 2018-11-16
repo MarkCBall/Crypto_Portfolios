@@ -27,23 +27,19 @@
 
       <div><%- coin.tokenTicker %> - <%- coin.tokenName %> -- <%- coin.tokenAmount %> </div>
 
-      <form method="post" action="/updateAmount">
-        <input type="hidden" name="userName" value="<%= path1 %>">
-        <input type="hidden" name="portfolioName" value="<%= path2 %>">
-        <input type="hidden" name="tokenTicker" value="<%= coin.tokenTicker %>">
-        <input type="number" name="newAmount" value="" placeholder="Enter New Amount">
-        <input type="submit" value="Update Amount">
-      </form>
-
+      <input id="newAmount" type="number">
       <button onclick="fetch
           ('/<%= path1 %>/<%= path2 %>/<%= coin.tokenTicker %>', 
           {
             method: 'PUT',
-            body: JSON.stringify({newAmount:'5'})
+            headers: {
+              'Accept': 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({newAmount:document.getElementById('newAmount').value})
           }).then(function() {window.location='/<%= path1 %>/<%= path2 %>'})"
-      >Update aaaaAmount
+      >Update Amount
       </button>
-      
 
 
       <button onclick="fetch('/<%= path1 %>/<%= path2 %>/<%= coin.tokenTicker %>', {method: 'DELETE'})
