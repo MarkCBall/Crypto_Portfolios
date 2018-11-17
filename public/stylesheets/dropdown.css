@@ -63,3 +63,7 @@
 .input-content {
     visibility: hidden;
 }
+
+.row {
+    background-color: lightgray;
+}

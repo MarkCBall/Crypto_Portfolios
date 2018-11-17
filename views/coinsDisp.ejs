@@ -5,7 +5,6 @@
     <script src="/scripts/dropdown.js"></script>
   </head>
 
-
   <script>
       function updatePrice(symb,numOwned){
     
@@ -17,15 +16,16 @@
             for (let i=0;i<res.metadata.num_cryptocurrencies;i++) {
               if (res.data[i])
                 if (symb.toUpperCase() == res.data[i].symbol.toUpperCase()){
-                  let str = "Current price: " + res.data[i].quotes.USD.price 
-                  str += " Total owned: " + res.data[i].quotes.USD.price*numOwned
-                  document.getElementById(symb.toUpperCase()).innerHTML=  str
+                  coinPrice = res.data[i].quotes.USD.price
+                  totalValue = res.data[i].quotes.USD.price*numOwned
+                  let str = "Current coin price in USD: $" + coinPrice.toLocaleString('en-US', {maximumFractionDigits:2}) 
+                  str += "  -  Total Value in USD: $" + totalValue.toLocaleString('en-US', {maximumFractionDigits:2})
+                  document.getElementById(symb.toUpperCase()).innerHTML = str
                 } 
             }
           });
       }
       </script>
-
 
 
   <body>
@@ -37,22 +37,13 @@
     <% coins.forEach(function(coin) { %>
       <div class="Row">
         <!-- display ticker, name and amount -->
-        <div class="container">
           <div class="row">
-           <div class="col-sm"><%- coin.tokenTicker %></div>
-           <div class="col-sm"> <%- coin.tokenName %> </div>
-           <div class="col-sm"><%- coin.tokenAmount %></div> 
-          </div>
+           <div class="col-sm">Symbol: <%- coin.tokenTicker %></div>
+           <div class="col-sm">Name: <%- coin.tokenName %> </div>
+           <div class="col-sm">Amount Owned: <%- coin.tokenAmount %></div> 
         </div>
-        <div id="<%- coin.tokenTicker %>" onclick="updatePrice('<%- coin.tokenTicker %>',<%- coin.tokenAmount %>);">Click to show price</div>
+        <a href="#" id="<%- coin.tokenTicker %>" onclick="updatePrice('<%- coin.tokenTicker %>',<%- coin.tokenAmount %>);">Click to show price</a><br>
        
-        
- 
-
-
-
-
-
 
         <!-- box to input how many coins to update to and update button -->
         <input id="newAmount" type="number">
@@ -75,10 +66,11 @@
             Delete Coin
           </button>
     </div>
+    <br>
      <% }) %>
 
 
-     <br><br><br>
+     <br><br>
      <!-- ADD COIN FORM AND BUTTON -->
      <div class="dropdown">
       <button onclick="showCoins()" class="dropbtn">Click here to select a coin ▼</button>
